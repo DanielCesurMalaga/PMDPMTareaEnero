@@ -37,7 +37,7 @@ public class WebActivity extends AppCompatActivity {
         singNameWeb = (TextView) findViewById(R.id.singNameWeb);
         actualTimeWeb = (TextView) findViewById(R.id.actualTimeWeb);
 
-        //mediaPlayer = MediaPlayer.create(this, R.raw.battle_stirling);
+
         mediaPlayer = new MediaPlayer();
         try {
             mediaPlayer.setDataSource("https://assets.mixkit.co/music/130/130.mp3");
@@ -90,8 +90,9 @@ public class WebActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         mediaPlayer.pause();
-                        actualTimeWeb.setText("total time: " + mediaPlayer.getDuration()
-                                + " / actual time: " + mediaPlayer.getCurrentPosition());
+                        mediaPlayer.pause();
+                        actualTimeWeb.setText("total time: " + formatoTiempo(mediaPlayer.getDuration())
+                                + "\n" + formatoTiempo(mediaPlayer.getCurrentPosition()));
                         actualTimeWeb.setVisibility(View.VISIBLE);
                     }
                 }
@@ -104,5 +105,13 @@ public class WebActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         mediaPlayer.stop();
+    }
+
+    private String formatoTiempo(int miliSeg) {
+        int segundos = miliSeg / 1000;
+        int minutos = segundos / 60;
+        segundos = segundos - (minutos * 60);
+        return ("MIN: " + minutos + " / SEC: " + segundos);
+
     }
 }

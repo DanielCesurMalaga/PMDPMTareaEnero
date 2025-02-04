@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class LocalActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class LocalActivity extends AppCompatActivity {
         singName = (TextView) findViewById(R.id.singName);
         actualTime = (TextView) findViewById(R.id.actualTimeWeb);
 
-        //mediaPlayer = MediaPlayer.create(this, R.raw.battle_stirling);
+
         mediaPlayer = MediaPlayer.create(this,R.raw.battle_stirling);
 
 
@@ -78,8 +79,8 @@ public class LocalActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         mediaPlayer.pause();
-                        actualTime.setText("total time: " + mediaPlayer.getDuration()
-                                + " / actual time: " + mediaPlayer.getCurrentPosition());
+                        actualTime.setText("total time: " + formatoTiempo(mediaPlayer.getDuration())
+                                + "\n"+formatoTiempo(mediaPlayer.getCurrentPosition()));
                         actualTime.setVisibility(View.VISIBLE);
                     }
                 }
@@ -92,5 +93,13 @@ public class LocalActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         mediaPlayer.stop();
+    }
+
+    private String formatoTiempo(int miliSeg){
+        int segundos = miliSeg / 1000;
+        int minutos = segundos / 60;
+        segundos = segundos - ( minutos *60);
+        return ("MIN: "+minutos+" / SEC: "+segundos);
+
     }
 }
