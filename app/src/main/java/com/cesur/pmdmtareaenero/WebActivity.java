@@ -91,7 +91,6 @@ public class WebActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         mediaPlayer.pause();
-                        mediaPlayer.pause();
                         actualTimeWeb.setText("total time: " + formatoTiempo(mediaPlayer.getDuration())
                                 + "\nActual time: " + formatoTiempo(mediaPlayer.getCurrentPosition()));
                         actualTimeWeb.setVisibility(View.VISIBLE);
