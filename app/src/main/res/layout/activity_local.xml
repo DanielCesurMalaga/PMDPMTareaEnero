@@ -5,18 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9C27B0"
+    android:background="@drawable/battle_stirling"
     tools:context=".LocalActivity">
-
-    <ImageButton
-        android:id="@+id/localGoesMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
     <ImageButton
         android:id="@+id/playLocal"
@@ -24,6 +14,8 @@
         android:layout_height="60dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
+        android:backgroundTint="#000000"
+        android:tint="#FFEB3B"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@android:drawable/ic_media_play" />
@@ -34,6 +26,8 @@
         android:layout_height="60dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
+        android:backgroundTint="#000000"
+        android:tint="#FFEB3B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@android:drawable/alert_light_frame" />
@@ -43,50 +37,58 @@
         android:layout_width="307dp"
         android:layout_height="30dp"
         android:layout_marginTop="50dp"
+        android:background="#000000"
+        android:backgroundTint="#000000"
         android:text="mp3 Local"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#FFEB3B"
         android:textSize="28dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/pauseLocal"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@android:drawable/ic_media_pause" />
-
     <TextView
         android:id="@+id/singName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
+        android:background="#000000"
         android:text="Canción:"
-        android:textColor="#FFFFFF"
+        android:textColor="#FFEB3B"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pauseLocal" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/actualTimeWeb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:background="#000000"
+        android:backgroundTint="#000000"
         android:text="TextView"
-        android:textColor="#FFFFFF"
+        android:textColor="#FFEB3B"
         android:textSize="28dp"
         android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/singName" />
+
+    <ImageButton
+        android:id="@+id/localGoesMain"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="#000000"
+        android:scaleType="fitXY"
+        android:tint="#FFEB3B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

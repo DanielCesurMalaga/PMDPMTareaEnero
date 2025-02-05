@@ -76,6 +76,7 @@ public class WebActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         mediaPlayer.stop();
+                        actualTimeWeb.setVisibility(View.INVISIBLE);
                         try {
                             mediaPlayer.prepare();
                         } catch (IOException e) {
@@ -92,7 +93,7 @@ public class WebActivity extends AppCompatActivity {
                         mediaPlayer.pause();
                         mediaPlayer.pause();
                         actualTimeWeb.setText("total time: " + formatoTiempo(mediaPlayer.getDuration())
-                                + "\n" + formatoTiempo(mediaPlayer.getCurrentPosition()));
+                                + "\nActual time: " + formatoTiempo(mediaPlayer.getCurrentPosition()));
                         actualTimeWeb.setVisibility(View.VISIBLE);
                     }
                 }
@@ -104,7 +105,8 @@ public class WebActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mediaPlayer.stop();
+        if (mediaPlayer.isPlaying())
+            mediaPlayer.stop();
     }
 
     private String formatoTiempo(int miliSeg) {

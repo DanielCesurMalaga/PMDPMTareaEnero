@@ -17,7 +17,6 @@ public class LocalActivity extends AppCompatActivity {
     private ImageButton localGoesMain;
     private ImageButton playLocal;
     private ImageButton stopLocal;
-    private ImageButton pauseLocal;
     private TextView singName;
     private TextView actualTime;
     private MediaPlayer mediaPlayer;
@@ -30,12 +29,12 @@ public class LocalActivity extends AppCompatActivity {
         localGoesMain = (ImageButton) findViewById(R.id.localGoesMain);
         playLocal = (ImageButton) findViewById(R.id.playLocal);
         stopLocal = (ImageButton) findViewById(R.id.stopLocal);
-        pauseLocal = (ImageButton) findViewById(R.id.pauseLocal);
         singName = (TextView) findViewById(R.id.singName);
         actualTime = (TextView) findViewById(R.id.actualTimeWeb);
 
 
-        mediaPlayer = MediaPlayer.create(this,R.raw.battle_stirling);
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.battle_stirling);
 
 
         singName.setText("Nombre de la canción: The battle of Stirling");
@@ -54,8 +53,20 @@ public class LocalActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if  (mediaPlayer.isPlaying()){
+                            mediaPlayer.pause();
+                            actualTime.setText("total time: " + formatoTiempo(mediaPlayer.getDuration())
+                                    + "\nActual time: " + formatoTiempo(mediaPlayer.getCurrentPosition()));
+                            actualTime.setVisibility(View.VISIBLE);
+
+                            playLocal.setImageResource(android.R.drawable.ic_media_play);
+                        } else {
                             mediaPlayer.start();
                             actualTime.setVisibility(View.INVISIBLE);
+                            playLocal.setImageResource(android.R.drawable.ic_media_pause);
+                        }
+
+
                     }
                 }
         );
@@ -65,6 +76,8 @@ public class LocalActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         mediaPlayer.stop();
+                        actualTime.setVisibility(View.INVISIBLE);
+                        playLocal.setImageResource(android.R.drawable.ic_media_play);
                         try {
                             mediaPlayer.prepare();
                         } catch (IOException e) {
@@ -74,32 +87,20 @@ public class LocalActivity extends AppCompatActivity {
                 }
         );
 
-        pauseLocal.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mediaPlayer.pause();
-                        actualTime.setText("total time: " + formatoTiempo(mediaPlayer.getDuration())
-                                + "\n"+formatoTiempo(mediaPlayer.getCurrentPosition()));
-                        actualTime.setVisibility(View.VISIBLE);
-                    }
-                }
-        );
-
-
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mediaPlayer.stop();
+        if (mediaPlayer.isPlaying())
+            mediaPlayer.stop();
     }
 
-    private String formatoTiempo(int miliSeg){
+    private String formatoTiempo(int miliSeg) {
         int segundos = miliSeg / 1000;
         int minutos = segundos / 60;
-        segundos = segundos - ( minutos *60);
-        return ("MIN: "+minutos+" / SEC: "+segundos);
+        segundos = segundos - (minutos * 60);
+        return ("MIN: " + minutos + " / SEC: " + segundos);
 
     }
 }
